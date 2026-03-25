@@ -1,0 +1,49 @@
+### Raiz
+GET http://localhost:3000/ HTTP/1.1
+
+### Login (obtener JWT)
+POST http://localhost:3000/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "admin@espam.edu",
+  "password": "TuClaveSegura123"
+}
+
+### Listar cursos (publico, sin token)
+GET http://localhost:3000/api/cursos HTTP/1.1
+
+### Crear curso (PROTEGIDO: pegar token del login en Authorization)
+POST http://localhost:3000/api/cursos HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer PEGA_AQUI_EL_TOKEN
+
+{
+  "nombre": "Arquitectura de Software",
+  "descripcion": "Curso orientado al diseno de sistemas escalables y mantenibles",
+  "docente": "Dr. Juan Perez",
+  "creditos": 4,
+  "horas": 64,
+  "modalidad": "Virtual"
+}
+
+### Consultar por ID (publico)
+GET http://localhost:3000/api/cursos/1 HTTP/1.1
+
+### Actualizar (PROTEGIDO)
+PUT http://localhost:3000/api/cursos/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer PEGA_AQUI_EL_TOKEN
+
+{
+  "nombre": "Arquitectura de Software Avanzada",
+  "descripcion": "Curso enfocado en patrones, arquitectura limpia y escalabilidad",
+  "docente": "Dra. Maria Lopez",
+  "creditos": 5,
+  "horas": 80,
+  "modalidad": "Hibrida"
+}
+
+### Eliminar (PROTEGIDO)
+DELETE http://localhost:3000/api/cursos/1 HTTP/1.1
+Authorization: Bearer PEGA_AQUI_EL_TOKEN
